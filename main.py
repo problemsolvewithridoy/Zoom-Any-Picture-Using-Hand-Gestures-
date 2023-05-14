@@ -25,6 +25,22 @@ while True:
 
         hand1_fingers = detector.fingersUp(hands[0])
         hand2_fingers = detector.fingersUp(hands[1])
+
+        if hand1_fingers == [1,1,0,0,0] and hand2_fingers == [1,1,0,0,0]:
+            lmList1 = hand1["lmList"]
+            lmList2 = hand2["lmList"]
+
+            if startDis is None:
+                # length, info, img = detector.findDistance(lmList1[8], lmList2[8], img)
+                length, info, img = detector.findDistance(hand1["center"], hand2["center"], img)
+                # print(length)
+                startDis = length
+
+            # length, info, img = detector.findDistance(lmList1[8], lmList2[8], img)
+            length, info, img = detector.findDistance(hand1["center"], hand2["center"], img)
+            scale = int((length - startDis)//2)
+            cx, cy = info[4:]
+            # print(scale)
     
     
 
