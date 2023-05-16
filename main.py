@@ -41,6 +41,18 @@ while True:
             scale = int((length - startDis)//2)
             cx, cy = info[4:]
             # print(scale)
+
+    else:
+        startDis = None
+    
+    try:
+        h1, w1, _ = img1.shape
+        newH, newW = ((h1 + scale)//2)*2 , ((w1 + scale)//2)*2
+        img1 = cv2.resize(img1,(newH, newW))
+        img[cy - newH//2 : cy + newH//2, cx - newW//2 : cx + newW//2] = img1
+    
+    except:
+        pass
     
     
 
